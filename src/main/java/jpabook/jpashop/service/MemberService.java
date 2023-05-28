@@ -26,6 +26,15 @@ public class MemberService {
         return member.getId();
     }
 
+    /**
+     * 이름 변경
+     */
+    @Transactional
+    public void update(Long id, String name){
+        Member member = memberRepository.findOne(id);
+        member.modifyName(name);
+    }
+
     protected void validateDuplicateMember(Member member){
         List<Member> findMembers = memberRepository.findByName(member.getName());
         if( ! findMembers.isEmpty() ){
@@ -39,7 +48,7 @@ public class MemberService {
     }
 
     //회원 조회
-    public Member findMember(Long memberId){
+    public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
     }
 }

@@ -1,0 +1,22 @@
+Appenders:
+  Console:
+    name: Console_Appender
+    target: SYSTEM_OUT
+    PatternLayout:
+      pattern: "[%-5level] %d{HH:mm:ss} [%t][%F] %c{1} - %msg%n"
+
+Loggers:
+  Root:
+    level: DEBUG
+    AppenderRef:
+      - ref: Console_Appender
+#      - ref: File_Appender
+#      - ref: RollingFile_Appender
+#  Logger:
+#    - name: 적용할 패키지
+#      additivity: false
+#      level: info
+#      AppenderRef:
+#        - ref: Console_Appender
+#        - ref: File_Appender
+#        - ref: RollingFile_Appender

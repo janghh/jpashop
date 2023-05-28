@@ -29,12 +29,12 @@
 //
 //        //when
 //        Long savedId = memberRepository.save(member);
-//        Member findMember = memberRepository.find(savedId);
+//        Member findOne = memberRepository.find(savedId);
 //
 //        //then
-//        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-//        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-//        Assertions.assertThat(findMember).isEqualTo(member);
+//        Assertions.assertThat(findOne.getId()).isEqualTo(member.getId());
+//        Assertions.assertThat(findOne.getUsername()).isEqualTo(member.getUsername());
+//        Assertions.assertThat(findOne).isEqualTo(member);
 //    }
 //
 //}

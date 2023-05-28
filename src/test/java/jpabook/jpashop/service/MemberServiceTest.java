@@ -34,7 +34,7 @@ public class MemberServiceTest {
 
         //then
         em.flush();
-        assertEquals(member, memberService.findMember(saveId));
+        assertEquals(member, memberService.findOne(saveId));
     }
 
     @Test(expected = IllegalStateException.class)
