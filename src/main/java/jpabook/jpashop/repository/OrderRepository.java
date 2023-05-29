@@ -84,10 +84,10 @@ public class OrderRepository {
         return em.createQuery(
                 "select distinct o " +
                         " from Order o " +
-                        " join fetch o.member m " +
-                        " join fetch o.delivery d " +
-                        " join fetch o.orderItems oi " +
-                        " join fetch oi.item i"
+                        " join fetch o.member m " + // To One (Order -> Member)
+                        " join fetch o.delivery d " + // To One (Order -> Delivery)
+                        " join fetch o.orderItems oi " + // To Many (Order -> OrderItem)
+                        " join fetch oi.item i" // To Many (OrderItem -> Item)
                 , Order.class
         )
 //                .setFirstResult(1)
@@ -95,4 +95,18 @@ public class OrderRepository {
                 .getResultList();
     }
 
+    /**
+     * To One만 fetch join으로 한번에 가져온다.
+     * To Many는 Batch_size 옵션을 통해 서비스 레이어에서 가져온다.
+     */
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "select o " +
+                        " from Order o " +
+                        " join fetch o.member m " + // To One (Order -> Member)
+                        " join fetch o.delivery d", Order.class) // To One (Order -> Member)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }
